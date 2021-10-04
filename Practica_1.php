@@ -2,9 +2,9 @@
 <?php
     
     $db_host = "localhost";
-    $db_name = "localhost";
-    $db_user = "Practica_1.php";
-    $db_pass = "BICHOTA123";
+    $db_name = "PRACTICA1.php";
+    $db_user = "PRACTICA1.php";
+    $db_pass = "pFC(67*2]DnNI2kD";
     
     $conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
     
