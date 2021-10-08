@@ -46,77 +46,94 @@
 
     <style>
       
-      header{
-          border: solid 5px black;
-          background-color: yellow;
-          margin-bottom: 4px;
-          padding: 10px;
-          text-align:center;
+        header{
+            border: solid 5px black;
+            background-color: yellow;
+            margin-bottom: 10px;
+            padding: 10px;
+            text-align:center;
+            margin-left:27%;
+            margin-right: 27%;
+        }
+
+        footer{
+            border: solid 5px black;
+            background-color: turquoise;
+            margin-top: 10px;
+            padding: 10px;
+            text-align:center;
+            margin-left:27%;
+            margin-right: 27%;
+        }
+
+        h2{
+            text-align:center;
+        }
+
+        body{
+
+            text-align:center;
+
+        }
+
+        div{
+
+            border: solid black 3px;
+            margin-left:27%;
+            margin-right: 27%;
+            padding: 10px;
         }
 
     </style>
 </head>
 <body>
 
+
+
+
     <header>
         <h1>DATOS DE VEHICULO Y LISTA DE SERVICIOS</h1>
     </header>
  
+    <div>
     <main>
 
         <?php if (empty($users)): ?>
 
             <p>No hay ningún usuario registrado</p>
 
-        <?php else: ?>
-            <ul>
-                <?php foreach ($users as $usu): ?>
-                
-                    <id_user><?= $usu['id_user']; ?></id_user>
-                    <br>
-                    <id_user><?= $usu['marca']; ?></id_user>
-                    <br>
-                    <id_user><?= $usu['modelo']; ?></id_user>
-                    <br>
-                    <id_user><?= $usu['matricula']; ?></id_user>
-                    <br>
-                    <id_user><?= $usu['combustible']; ?></id_user>
-                    <br>
-                    <id_user><?= $usu['tipo_motor']; ?></id_user>
-
-                <?php endforeach; ?>
-            </ul>
         <?php endif; ?>
 
-
-        <h2>VEHÍCULO</h2>
+        <h2>DATOS VEHÍCULO</h2>
         
         <form>
 
-            <p>Nombre: <input type="text" name = "id_user" placeholder = "NOMBRE DE USUARIO" 
-            value = <?= $usu['id_user']; ?>>
-            </p>
+            <?php foreach ($users as $usu): ?>
+                <p>Nombre: <input type="text" name = "id_user" placeholder = "NOMBRE DE USUARIO" 
+                value = <?= $usu['id_user']; ?>>
+                </p>
 
-            <p>Matrícula: <input type = "text" name = "id_vehiculo" placeholder = "MATRÍCULA" 
-            value = <?= $usu['matricula']; ?>></p>
+                <p>Matrícula: <input type = "text" name = "id_vehiculo" placeholder = "MATRÍCULA" 
+                value = <?= $usu['matricula']; ?>></p>
 
-            <p>Marca: <input type="text" name="entrada3" placeholder = "MARCA" 
-            value = <?= $usu['marca']; ?>></p>
-            
-            <p>Modelo: <input type="text" name="entrada4" placeholder = "MODELO" 
-            value = <?= $usu['modelo']; ?>></p>
-            
-            <p>Combustible: <input type="text" name="entrada5" placeholder = "COMBUSTIBLE" 
-            value = <?= $usu['combustible']; ?>></p>
-            
-            <p>Tipo de motor: <input type="text" name="entrada6" placeholder = "TIPO DE MOTOR" 
-            value = <?= $usu['tipo_motor']; ?>></p>
+                <p>Marca: <input type="text" name="entrada3" placeholder = "MARCA" 
+                value = <?= $usu['marca']; ?>></p>
+                
+                <p>Modelo: <input type="text" name="entrada4" placeholder = "MODELO" 
+                value = <?= $usu['modelo']; ?>></p>
+                
+                <p>Combustible: <input type="text" name="entrada5" placeholder = "COMBUSTIBLE" 
+                value = <?= $usu['combustible']; ?>></p>
+                
+                <p>Tipo de motor: <input type="text" name="entrada6" placeholder = "TIPO DE MOTOR" 
+                value = <?= $usu['tipo_motor']; ?>></p>
 
-            <input type="submit" value="GUARDAR">
+            <?php endforeach; ?>
+
+                <input type="submit" value="GUARDAR">
 
         </form>
 
-        <br>
         <br>
 
         <h2>LISTA DE SERVICIOS</h2>
@@ -138,9 +155,13 @@
 
     </main>
 
+    </div>
+
     <footer>
 
-
+        <h1>FOOTER</h1>
+        
     </footer>
+
 </body>
 </html>
