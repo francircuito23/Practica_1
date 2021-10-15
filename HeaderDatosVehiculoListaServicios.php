@@ -98,7 +98,7 @@
     <div>
     <main>
 
-        <?php if (empty($users)): ?>
+        <?php if (empty($users)) : ?>
 
             <p>No hay ningún usuario registrado</p>
 
