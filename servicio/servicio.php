@@ -21,22 +21,24 @@ $sql = "SELECT * FROM servicio where id_user = $usu";
 $results = mysqli_query($conn, $sql);
 
 if ($results === false) {
+
     echo mysqli_error($conn);
+
 } else {
-    $users = mysqli_fetch_all($results, MYSQLI_ASSOC);
+
+$users = mysqli_fetch_all($results, MYSQLI_ASSOC);
+
 }
 
 
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <meta charset="UTF-8">
 
     <style>
         header {
@@ -79,7 +81,7 @@ if ($results === false) {
 <body>
     <div>
         <header>
-            <h2>Header</h2>
+            <h2>Datos de servicio</h2>
         </header>
 
         <main>
@@ -89,16 +91,16 @@ if ($results === false) {
             <?php endif; ?>
 
             <form>
-                <?php foreach ($users as $usu) : ?>
-                    <h3>Nombre de Usuario </h3>
+                <?php foreach ($users as $usu): ?>
+                    <p>Nombre: <input type="text" name="Nombre" placeholder="NOMBRE DE USUARIO" value=<?= $usu['Nombre']; ?>></p>
                     <h3 class="hola">Vehículo</h3>
-                    <p>Matrícula<input type="text" name="Matrícula" placeholder="Matrícula" value=<?= $usu['Matrícula']; ?>></p>
+                    <p>Matrícula<input type="text" name="Matricula" placeholder="Matricula" value=<?= $usu['Matricula']; ?>></p>
                     <p>Marca<input type="text" name="Marca" placeholder="Marca" value=<?= $usu['Marca']; ?>></p>
                     <p>Modelo<input type="text" name="Modelo" placeholder="Modelo" value=<?= $usu['Modelo']; ?>></p>
                     <h3 class="hola">Servicio </h3>
-                    <p>Tipo de servicio<input type="text" name="Tipo de servicio" placeholder="tipo de servicio" value=<?= $usu['Tipo de servicio']; ?>></p>
-                    <p>fecha<input type="date" name="fecha" value=<?= $usu['Fecha']; ?>></p>
-                    <p>Descripción<input type="text" name="Descripción" placeholder="Descripción" value=<?= $usu['Descripción']; ?>></p>
+                    <p>Tipo de servicio<input type="text" name="Tipo de servicio" placeholder="tipo de servicio" value=<?= $usu['TipoServicio']; ?>></p>
+                    <p>fecha<input type="date" name="Fecha" value=<?= $usu['Fecha']; ?>></p>
+                    <p>Descripción<input type="text" name="Descripción" placeholder="Descripción" value=<?= $usu['Descripcion']; ?>></p>
 
                 <?php endforeach; ?>
 
@@ -111,7 +113,7 @@ if ($results === false) {
         <br>
         <footer>
 
-            <h2>Footer</h2>
+            <h2>Datos del servicio</h2>
 
         </footer>
     </div>
