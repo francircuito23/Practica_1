@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Vehículos</title>
+</head>
+<body>
+    <style>
+
+        body{
+            box-sizing: border-box;
+            font-family: 'Titillium Web', sans-serif;
+        }
+
+        header{
+            background: linear-gradient(to bottom, #129bc5, white);
+            position: relative;
+            text-align: center;
+            border-radius: 50px 50px 221px 244px / 25px 25px 100px 100px;
+            width: 1000px;
+            height: 100px;
+            left: 450px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header{
+            font-family: Copperplate, Copperplate Gothic Light, fantasy;
+            font-size: xx-large;
+        }
+
+        h1{
+            text-align: center;
+        }
+
+        .usuario {
+            margin-top: 100px;
+            margin-left: 300px;
+            width: 343px; 
+            height: 400px; 
+            border-radius: 8px/7px; 
+            background-color: #ebebeb;
+            box-shadow: 1px 2px 5px rgba(0,0,0,.31); 
+            border: solid 1px #cbc9c9;
+            
+        }
+
+        form{
+            margin-left: 50px;
+        }
+
+        input[type=text],input[type=password]{
+            width: 200px; 
+            height: 39px;
+        }
+
+        #name{
+
+            margin-bottom: 15px;
+            margin-top: 15px;
+            margin-left: 15px;
+        }
+
+        #iduser{
+
+            margin-bottom: 15px;
+            margin-left: 15px;
+        }
+
+        #pass{
+            margin-left: 15px;
+        }
+
+        a.button {
+            font-size: 14px;
+            font-weight: 600;
+            color: white;
+            padding: 6px 25px 0px 20px;
+            margin: 50px 30px 50px 45px;
+            display: inline-block;
+            text-decoration: none;
+            width: 100px; height: 20px; 
+            border-radius: 5px; 
+            background-color: #3a57af; 
+            box-shadow: 0 3px rgba(58,87,175,.75); 
+            top: 0px;
+            position: relative;
+        }
+
+        a.button:hover {
+            top: 3px;
+            background-color:#2e458b;
+            box-shadow: none;
+            
+        }
+        
+    </style>
+
+    <header>
+        <p class="header"><b>Lista de vehículos</b></p>
+    </header>
+
+    <div class="usuario">
+        <h1>Datos Usuario</h1>
+
+        <hr>
+
+        <form action="">
+            <input type="text" name="nombre" id="name" placeholder="Nombre" required/>
+
+            <input type="text" name="id_user" id="iduser" placeholder="ID" required/>
+            
+            <input type="password" name="pass" id="pass" placeholder="Contraseña" required/>
+
+            <a href="#" class="button">Editar Usuario</a>
+        </form>
+
+    </div>
+    
+</body>
+</html>
