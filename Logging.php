@@ -19,6 +19,7 @@
         }
 
         .body{
+
             position: absolute;
             top: -20px;
             left: -20px;
@@ -30,6 +31,7 @@
             background-size: cover;
             -webkit-filter: blur(5px);
             z-index: 0;
+            
         }
 
         .grad{
@@ -201,11 +203,11 @@
 		<br>
 		<div class="login">
 
-            <form class = "form" action = "Datos_Usuario.php" method="GET">
+            <form class = "form" action = "ListadeVehiculos.php" method="GET">
 
                 <input type = "text" name = "id_user" class = "username" placeholder = "Numero de identificación">
                 <br>
-                <input type = "submit" class = "login" value = "Login">
+                <input type = "submit" class = "login" value = "LOGIN">
 
             </form>
             

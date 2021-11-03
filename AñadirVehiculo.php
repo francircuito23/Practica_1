@@ -1,11 +1,9 @@
 <?php
 
-
-
     $db_host = "localhost";
-    $db_name = "practica1";
-    $db_user = "Practica_1.php";
-    $db_pass = "BICHOTA123";
+    $db_name = "practica_1";
+    $db_user = "root";
+    $db_pass = "";
 
     $id = $_GET['id_user'];
 

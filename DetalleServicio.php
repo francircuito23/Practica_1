@@ -1,9 +1,9 @@
 <?php
 
     $db_host = "localhost";
-    $db_name = "practica1";
-    $db_user = "Practica_1.php";
-    $db_pass = "BICHOTA123";
+    $db_name = "practica_1";
+    $db_user = "root";
+    $db_pass = "";
     
     $usuario = $_GET['id_user'];
     $car = $_GET['id_veh'];
@@ -15,6 +15,7 @@
     $conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
     $conn2 = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
     $conn3 = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
+    $conn4 = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
 
     if (mysqli_connect_error()) {
 
@@ -23,12 +24,12 @@
         exit;
     }
 
-    echo "Connected successfully.";
+    //echo "Connected successfully.";
 
     $sql = "SELECT * FROM vehiculos where id_veh = $car";
     $sql2 = "SELECT * FROM usuarios where id_user = $usuario";
-    $sql3 = "SELECT * FROM servicios where id_service = $idservice";
-
+    $sql3 = "SELECT * FROM servicios where id_veh = $car and id_service = $idservice";
+    
     $results = mysqli_query($conn, $sql);
  
     if ($results === false) {
@@ -66,12 +67,8 @@
 
     }
 
-
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
-        //$sql6 = "INSERT INTO servicios (id_service, NomServicio, Fecha, Descripción) 
-        //VALUES ('{$_POST['id_service']}', '{$_POST['NomServicio']}', '{$_POST['Fecha']}', '{$_POST['Descripción']}')";
-    
+        
         $sql6 = "UPDATE servicios,vehiculos SET id_service = '" .$_POST['id_service']."', NomServicio='"
         .$_POST['NomServicio']."', Fecha = '".$_POST['Fecha']."', Descripción = '".$_POST['Descripción']."' WHERE id_service = '".$id."'";
         
@@ -108,8 +105,6 @@
             margin-bottom: 10px;
             padding: 10px;
             text-align:center;
-            margin-left:27%;
-            margin-right: 27%;
             margin-top:30px;
         }
 
@@ -118,12 +113,6 @@
             background-color: turquoise;
             margin-top: 10px;
             padding: 10px;
-            text-align:center;
-            margin-left:27%;
-            margin-right: 27%;
-        }
-
-        h2{
             text-align:center;
         }
 
@@ -145,14 +134,11 @@
         div{
 
             border: solid black 3px;
-            margin-left:27%;
-            margin-right: 27%;
             padding: 10px;
         }
 
         body{
             text-align:center;
-            position: absolute;
             top: 60px;
             left: -20px;
             right: -40px;
@@ -166,12 +152,19 @@
 
         table{
 
+            border: solid 5px black;
             padding:15px;
             margin-bottom: 10px;
             text-align: center;
-            margin-left: 240px;
-            margin-right: 50px;
+            margin-left: 160px;
             font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin-top: 5px;
+
+        }
+
+        #datos{
+
+            margin-left:600px;
 
         }
 
@@ -205,14 +198,42 @@
 
                     <form class = "form" method="POST">
 
-                        <p>Matrícula: <input type = "text" name = "matricula" placeholder = "MATRÍCULA" 
-                        value = <?= $veh['matricula']; ?>></p>
+                        <table id = datos>
 
-                        <p>Marca: <input type="text" name="marca" placeholder = "MARCA" 
-                        value = <?= $veh['marca']; ?>></p>
-                                        
-                        <p>Modelo: <input type="text" name="modelo" placeholder = "MODELO" 
-                        value = <?= $veh['modelo']; ?>></p>
+                            <tr>
+
+                                <td>
+
+                                    <p>Matrícula: <input type = "text" name = "matricula" placeholder = "MATRÍCULA" 
+                                    value = <?= $veh['matricula']; ?>></p>
+
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>
+
+                                    <p>Marca: <input type="text" name="marca" placeholder = "MARCA" 
+                                    value = <?= $veh['marca']; ?>></p>
+
+                                </td>
+                                
+                            </tr>
+
+                            <tr>
+
+                                <td>
+
+                                    <p>Modelo: <input type="text" name="modelo" placeholder = "MODELO" 
+                                    value = <?= $veh['modelo']; ?>></p>
+
+                                </td>
+                                
+                            </tr>
+
+                        </table>
 
                     </form>
 
@@ -226,100 +247,96 @@
 
                 <?php foreach ($users3 as $ser): ?>
 
-                    <table>
 
                         <form class = "form" method = "POST">
-                            <tr>
 
-                                <td>
-                                    <p>ID SERVICIO: <input type = "text" name = "id_service"
-                                    value = <?= $ser['id_service'] ?>></p>
-                                </td>
+                            <table>
+                                <tr>
 
-                                <td>
-                                    
-                                    <p>TIPO DE SERVICIO: <input type = "text" name = "NomServicio"
-                                    value = <?= $ser['NomServicio'] ?>></p>
+                                    <td>
+                                        <p>ID SERVICIO: <input type = "text" name = "id_service"
+                                        value = <?= $ser['id_service'] ?>></p>
+                                    </td>
 
-                                </td>
+                                    <td>
+                                        
+                                        <p>TIPO DE SERVICIO: <input type = "text" name = "NomServicio"
+                                        value = <?= $ser['NomServicio'] ?>></p>
 
-                                <td>
-                                    
-                                    <p>Fecha: <input type = "date" name = "Fecha"
-                                    value = <?= $ser['Fecha'] ?>></p>
+                                    </td>
 
-                                </td>
+                                    <td>
+                                        
+                                        <p>Fecha: <input type = "date" name = "Fecha"
+                                        value = <?= $ser['Fecha'] ?>></p>
 
-                                <td>
-                                    
-                                    <p>Descripción: <input type = "text" name = "Descripción"
-                                    value = <?= $ser['Descripción'] ?>></input></p>
+                                    </td>
 
-                                </td>
+                                    <td>
+                                        
+                                        <p>Descripción: <input type = "text" name = "Descripción"
+                                        value = <?= $ser['Descripción'] ?>></input></p>
 
-                                                
-                                <input type = "hidden" value = <?=$id?>>
-                                <input type = "submit" value = "GUARDAR">
+                                    </td>
 
-                            </tr> 
+                                                    
+                                    <input type = "hidden" value = <?=$id?>>
+                                    <input type = "submit" value = "GUARDAR">
 
+                                </tr> 
+                            </table>
                         </form>
 
-                    </table>
 
                 <?php endforeach; ?>
-
-                
-                
+ 
             <?php else: ?>
 
                 <?php foreach ($users3 as $ser): ?>
 
-                    <table>
-
                         <form class = "form" method = "POST">
-                            <tr>
 
-                                <td>
-                                    <p>ID SERVICIO: <input type = "text" name = "id_service"
-                                    value = <?= $ser['id_service'] ?>></p>
-                                </td>
+                            <table>
 
-                                <td>
-                                    
-                                    <p>TIPO DE SERVICIO: <input type = "text" name = "NomServicio"
-                                    value = <?= $ser['NomServicio'] ?>></p>
+                                <tr>
 
-                                </td>
+                                    <td>
+                                        <p>ID SERVICIO: <input type = "text" name = "id_service"
+                                        value = <?= $ser['id_service'] ?>></p>
+                                    </td>
 
-                                <td>
-                                    
-                                    <p>Fecha: <input type = "date" name = "Fecha"
-                                    value = <?= $ser['Fecha'] ?>></p>
+                                    <td>
+                                        
+                                        <p>TIPO DE SERVICIO: <textarea type = "text" name = "NomServicio"
+                                        ><?= $ser['NomServicio'] ?></textarea></p>
 
-                                </td>
+                                    </td>
 
-                                <td>
-                                    
-                                    <p>Descripción: <textarea type = "text" name = "Descripción"
-                                    ><?= $ser['Descripción'] ?></textarea></p>
+                                    <td>
+                                        
+                                        <p>Fecha: <input type = "date" name = "Fecha"
+                                        value = <?= $ser['Fecha'] ?>></p>
 
-                                </td>
+                                    </td>
 
-                                                
-                                <input type = "hidden" value = <?=$id?>>
-                                <input type = "submit" value = "GUARDAR">
+                                    <td>
+                                        
+                                        <p>Descripción: <textarea type = "text" name = "Descripción"
+                                        ><?= $ser['Descripción'] ?></textarea></p>
 
-                            </tr> 
+                                    </td>
+
+                                    <input type = "hidden" value = <?=$id?>>
+                                    <input type = "submit" value = "GUARDAR">
+
+
+                                </tr> 
+
+                            </table>                            
 
                         </form>
 
-                    </table>
-
-
                 <?php endforeach; ?>
-
-                
 
             <?php endif; ?>
 

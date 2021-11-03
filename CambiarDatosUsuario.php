@@ -1,13 +1,11 @@
 <?php
 
     $db_host = "localhost";
-    $db_name = "practica1";
-    $db_user = "Practica_1.php";
-    $db_pass = "BICHOTA123";
+    $db_name = "practica_1";
+    $db_user = "root";
+    $db_pass = "";
 
-    $id = $_GET['id_user'];
-
-
+    $idusu = $_GET['id_user'];
     
     $conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
 
@@ -18,9 +16,9 @@
         exit;
     }
 
-    echo "Connected successfully.";
+    //echo "Connected successfully.";
 
-    $sql = "SELECT * FROM usuarios where id_user = $id";
+    $sql = "SELECT * FROM usuarios where id_user = $idusu";
 
     $results = mysqli_query($conn, $sql);
  
@@ -37,7 +35,7 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
         $sql4 = "UPDATE usuarios SET id_user = '" .$_POST['id_user']."', login='"
-        .$_POST['login']."', password = '".$_POST['password']."' WHERE id_user = '".$id."'";
+        .$_POST['login']."', password = '".$_POST['password']."' WHERE id_user = '".$idusu."'";
     
         $results4 = mysqli_query($conn, $sql4);
     
@@ -49,6 +47,7 @@
     
             $id = mysqli_insert_id($conn);
             echo "Inserted record with ID: $id";
+            header("Location: http://localhost:81/Practica_1/ListadeVehiculos.php?id_user=$idusu");
     
         }
     
@@ -77,8 +76,8 @@
             font-family: Arial, sans-serif;
             font-size: 14px;
             line-height: 1.5em;
+            background-image: url("fotoweb.jpg");
             background-size: cover;
-            background-image: url("fototaller.jpg");
         }
 
             [class*="fontawesome-"]:before {
@@ -103,33 +102,38 @@
         }
 
         .Registro input {
+
             border: none;
             height: 48px;
             outline: none;
+            margin: 20px;
+            
         }
 
         .Registro input[type="text"] {
-            background-color: white;
+
             border-top: 2px solid #2c90c6;
             border-right: 1px solid #000;
             border-left: 1px solid #000;
-            border-radius: 5px 5px 0 0;
+            border-radius: 25px 25px 25px 25px;
             color: #363636;
             padding-left: 36px;
             width: 204px;
+            background-color: cyan;
+
         }
 
         .Registro input[type="password"] {
-            background-color: white;
+
             border-top: 2px solid black;
             border-right: 1px solid black;
             border-bottom: 2px solid black;
             border-left: 1px solid black;
-            border-radius:5px 5px;
             color: black;
             margin-bottom: 20px;
             padding-left: 36px;
             width: 204px;
+            background-color: cyan;
             
         }
 
@@ -155,23 +159,18 @@
         }
 
         .texto {
+
             color: blue; 
             font-size: 40px; 
             padding: 20px;
-            margin-left: 770px;
-            margin-right: 770px;
+            margin-left: 640px;
+            margin-right: 630px;
             background-color: yellow;
-            border: solid 4px black;
-        }
-
-        h2{
+            border: solid 4px black;            
             text-align:center;
-            color: black;
-            background-color: yellow;
-            border: solid 4px black;
-            margin-left: 770px;
-            margin-right: 770px;
+
         }
+        
 
     </style>
 
@@ -179,9 +178,7 @@
 </head>
 <body>
 
-    <h2>USUARIO</h2>
-
-    <p class="texto">Registro</p>
+    <p class="texto">USUARIO</p>
     <div class="Registro">  
 
         <form class = "form" method = "POST">
@@ -197,18 +194,20 @@
                 <input type="text" name="password"
                 value = <?= $usu['password']; ?>>
 
-                <input type = "hidden" value = <?=$id?>>
-                <input type = "submit">
+                <input type = "hidden" value = <?=$idusu?>>
+
+                
+                <form action = "ListadeVehiculos.php" method = "GET">
+                    
+                    <input type = "submit">
+
+                </form>
             <?php endforeach; ?>
 
         </form>
 
-        <form action = "ListadeVehiculos.php" method = "GET">
 
-            <input type="hidden" name = "id_user" value = <?= $usu['id_user']; ?>>
-            <input type = "submit" value = "Inicio">
-
-        </form>
+        
 
     </div>
 
